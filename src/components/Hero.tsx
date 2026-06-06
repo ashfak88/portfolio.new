@@ -132,7 +132,7 @@ export default function Hero() {
       <div className="hero-right">
         <img 
           ref={imageRef}
-          src="/ashfak.jpg" 
+          src="/ashfakIMG.jpeg" 
           alt="Ashfak KP" 
           className="hero-image" 
         />
