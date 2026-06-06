@@ -4,35 +4,115 @@ import React from 'react';
 
 export default function Hero() {
   return (
-    <section style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000', overflow: 'hidden' }}>
+    <section className="hero-section" style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000', overflow: 'hidden' }}>
+      <style>{`
+        .hero-bg-shape {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-color: #d9d9d9;
+          clip-path: polygon(0 0, 52% 0, 42% 100%, 0 100%);
+          z-index: 1;
+        }
+        .hero-container {
+          position: relative; 
+          z-index: 3; 
+          display: flex; 
+          height: 100vh; 
+          width: 100%;
+          padding: 0 8%;
+        }
+        .hero-left {
+          flex: 0 0 50%; 
+          display: flex; 
+          flex-direction: column; 
+          justify-content: center;
+        }
+        .hero-right-spacer {
+          flex: 0 0 50%;
+        }
+        .hero-right {
+          position: absolute;
+          top: 0;
+          left: 42%;
+          width: 58%;
+          height: 100%;
+          z-index: 2;
+          clip-path: polygon(17.24% 0, 100% 0, 100% 100%, 0 100%);
+          overflow: hidden;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          background-color: #000;
+        }
+        .hero-image {
+          width: auto;
+          height: 80%;
+          object-fit: contain;
+          pointer-events: none;
+        }
+        @media (max-width: 900px) {
+          .hero-section {
+            display: flex !important;
+            flex-direction: column !important;
+            height: auto !important;
+            min-height: 100vh;
+          }
+          .hero-bg-shape {
+            clip-path: polygon(0 0, 100% 0, 100% 60%, 0 75%);
+          }
+          .hero-container {
+            flex-direction: column;
+            padding: 6rem 2rem 2rem 2rem;
+            height: auto;
+            min-height: auto;
+            order: 1;
+          }
+          .hero-left {
+            flex: none;
+            width: 100%;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            text-align: center;
+          }
+          .hero-right-spacer {
+            display: none;
+          }
+          .hero-right {
+            position: relative;
+            left: 0;
+            width: 100%;
+            height: 45vh;
+            margin-top: 1rem;
+            overflow: hidden;
+            order: 2;
+            clip-path: none;
+          }
+          .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      `}</style>
       {/* Grey Background Shape */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#d9d9d9',
-        clipPath: 'polygon(0 0, 52% 0, 42% 100%, 0 100%)',
-        zIndex: 1
-      }}></div>
+      <div className="hero-bg-shape"></div>
 
+      {/* Right Content - Developer Image */}
+      <div className="hero-right">
+        <img 
+          src="/ashfak.jpg" 
+          alt="Ashfak KP" 
+          className="hero-image" 
+        />
+      </div>
       {/* Content Container */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 2, 
-        display: 'flex', 
-        height: '100vh', 
-        width: '100%',
-        padding: '0 8%' 
-      }}>
+      <div className="hero-container">
         {/* Left Content */}
-        <div style={{ 
-          flex: '0 0 50%', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'center' 
-        }}>
+        <div className="hero-left">
           <h2 style={{ 
             fontSize: '1.8rem', 
             fontWeight: 700, 
@@ -62,24 +142,24 @@ export default function Hero() {
             marginBottom: '3.5rem',
             fontFamily: 'system-ui, -apple-system, sans-serif'
           }}>
-            Front-end Developer / UI Designer
+            MERN Stack Developer
           </h3>
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <SocialIcon type="email" />
-            <SocialIcon type="github" />
-            <SocialIcon type="linkedin" />
+            <SocialIcon type="email" url="mailto:ashfakkp323@gmail.com" />
+            <SocialIcon type="github" url="https://github.com/ashfak88" />
+            <SocialIcon type="linkedin" url="https://www.linkedin.com/in/ashfak-kp" />
           </div>
         </div>
         
-        {/* Right Content - Empty as requested */}
-        <div style={{ flex: '0 0 50%' }}></div>
+        {/* Right Content Spacer */}
+        <div className="hero-right-spacer"></div>
       </div>
     </section>
   );
 }
 
-function SocialIcon({ type }: { type: string }) {
+function SocialIcon({ type, url }: { type: string; url: string }) {
   const getIcon = () => {
     switch(type) {
       case 'email':
@@ -107,27 +187,31 @@ function SocialIcon({ type }: { type: string }) {
   };
 
   return (
-    <a href="#" style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '45px',
-      height: '45px',
-      backgroundColor: '#d9d9d9',
-      borderRadius: '2px',
-      color: '#000',
-      boxShadow: '4px 4px 10px rgba(0,0,0,0.1), -4px -4px 10px rgba(255,255,255,0.8)',
-      transition: 'all 0.2s ease',
-      cursor: 'pointer'
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-2px)';
-      e.currentTarget.style.boxShadow = '6px 6px 12px rgba(0,0,0,0.15), -6px -6px 12px rgba(255,255,255,0.9)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '4px 4px 10px rgba(0,0,0,0.1), -4px -4px 10px rgba(255,255,255,0.8)';
-    }}
+    <a 
+      href={url} 
+      target={type === 'email' ? undefined : "_blank"} 
+      rel={type === 'email' ? undefined : "noopener noreferrer"}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '45px',
+        height: '45px',
+        backgroundColor: '#d9d9d9',
+        borderRadius: '2px',
+        color: '#000',
+        boxShadow: '4px 4px 10px rgba(0,0,0,0.1), -4px -4px 10px rgba(255,255,255,0.8)',
+        transition: 'all 0.2s ease',
+        cursor: 'pointer'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-2px)';
+        e.currentTarget.style.boxShadow = '6px 6px 12px rgba(0,0,0,0.15), -6px -6px 12px rgba(255,255,255,0.9)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '4px 4px 10px rgba(0,0,0,0.1), -4px -4px 10px rgba(255,255,255,0.8)';
+      }}
     >
       {getIcon()}
     </a>

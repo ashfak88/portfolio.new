@@ -2,13 +2,13 @@ import React from 'react';
 
 export default function About() {
   return (
-    <section id="about" style={{ 
-      minHeight: '100vh', 
-      padding: '2.5rem', 
-      backgroundColor: '#e6e6e6', 
-      color: '#111', 
-      display: 'flex', 
-      alignItems: 'center', 
+    <section id="about" style={{
+      minHeight: '100vh',
+      padding: '2.5rem',
+      backgroundColor: '#e6e6e6',
+      color: '#111',
+      display: 'flex',
+      alignItems: 'center',
       justifyContent: 'center',
       boxSizing: 'border-box'
     }}>
@@ -56,6 +56,14 @@ export default function About() {
           z-index: 2;
           padding: 0 2.5rem;
         }
+
+        .about-col-1-3 { grid-column: 1 / 3; }
+        .about-col-3-4 { grid-column: 3 / 4; }
+        .about-col-4-5 { grid-column: 4 / 5; }
+        .about-col-1-2 { grid-column: 1 / 2; }
+        .about-col-2-3 { grid-column: 2 / 3; }
+        .about-col-3-5 { grid-column: 3 / 5; }
+        .quote-heading { margin-left: 12%; }
 
         .cell-r1 { padding-top: 3rem; }
         .cell-r2 { padding-top: 3rem; }
@@ -110,11 +118,27 @@ export default function About() {
            }
            .grid-line { display: none; }
            .crosshair { display: none; }
-           .grid-cell { padding: 2rem 0; }
-           .cell-r1, .cell-r2, .cell-r3 { padding-top: 1rem; padding-bottom: 1rem; }
+           .grid-cell { padding: 1.5rem 0; }
+           .cell-r1, .cell-r2, .cell-r3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+           
+           .about-col-1-3,
+           .about-col-3-4,
+           .about-col-4-5,
+           .about-col-1-2,
+           .about-col-2-3,
+           .about-col-3-5 {
+             grid-column: span 1 !important;
+           }
+           .cell-r3.about-col-2-3 {
+             display: none;
+           }
+           .quote-heading {
+             margin-left: 0 !important;
+             margin-top: 1.5rem;
+           }
         }
       `}</style>
-      
+
       <div className="about-grid-wrapper">
         {/* Internal Vertical Grid Lines ONLY */}
         <div className="grid-line" style={{ left: '25%' }}></div>
@@ -136,24 +160,24 @@ export default function About() {
         <div className="crosshair" style={{ top: '100%', left: '100%' }}>+</div>
 
         <div className="about-grid">
-          
+
           {/* ROW 1: TOP ALIGNED */}
-          <div className="grid-cell cell-r1" style={{ gridColumn: '1 / 3' }}>
+          <div className="grid-cell cell-r1 about-col-1-3">
             <h2 className="heading-large">
-              I build applications that work <br/>
+              I build applications that work <br />
               as a system
-              consistent, scalable,<br/>
+              consistent, scalable,<br />
               and thoughtfully structured.
             </h2>
           </div>
 
-          <div className="grid-cell cell-r1" style={{ gridColumn: '3 / 4' }}>
+          <div className="grid-cell cell-r1 about-col-3-4">
             <div className="label" style={{ marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Education</div>
             <div className="date">2024</div>
           </div>
 
-          <div className="grid-cell cell-r1" style={{ gridColumn: '4 / 5' }}>
-            <div className="label" style={{ marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div> 
+          <div className="grid-cell cell-r1 about-col-4-5">
+            <div className="label" style={{ marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
             <div>
               <div className="label" style={{ marginBottom: '4px' }}>Bachelor of Arts in English</div>
               <div className="text-small" style={{ color: '#555' }}>Indira Gandhi National Open University</div>
@@ -162,32 +186,36 @@ export default function About() {
 
 
           {/* ROW 2: MIDDLE ROW */}
-          <div className="grid-cell cell-r2" style={{ gridColumn: '1 / 2' }}>
+          <div className="grid-cell cell-r2 about-col-1-2">
             <div style={{ width: '100%', aspectRatio: '3/4', backgroundColor: '#d0d0d0', borderRadius: '4px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontSize: '0.75rem', letterSpacing: '1px' }}>
-                PHOTO
-              </div>
+              <img
+                src="/photo 2.jpeg"
+                alt="Ashfak KP"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
             </div>
           </div>
-
-          <div className="grid-cell cell-r2" style={{ gridColumn: '2 / 3', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          <div className="grid-cell cell-r2 about-col-2-3" style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <p className="text-small">
-              I'm Ashfak KP, a MERN Stack Developer exploring the intersection of robust architecture, performance, and user experience.
+              I&apos;m Ashfak KP, a MERN Stack Developer specializing in building scalable, responsive, and secure full-stack applications with a focus on Domain-Driven Design and Modular Architecture.
             </p>
             <p className="text-small">
-              Based in Calicut, Kerala, my work focuses on the balance between functionality and design. These elements shape how I build applications and solve real-world problems.
+              Based in Calicut, Kerala, I have strong knowledge in MongoDB, Express.js, React.js, and Node.js. My work balances elegant design with high-performance system engineering.
             </p>
             <p className="text-small">
-              I work across React.js, Node.js, and MongoDB, creating digital experiences that are both scalable and engaging. My approach is rooted in clarity and intention.
+              I am highly experienced in designing RESTful APIs, implementing RBAC authentication systems, and crafting complex MongoDB Aggregation Pipelines to deliver clean, optimized code.
             </p>
           </div>
-
-          <div className="grid-cell cell-r2" style={{ gridColumn: '3 / 4' }}>
+          <div className="grid-cell cell-r2 about-col-3-4">
             <div className="label" style={{ marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Experience</div>
             <div className="date">08/25 - Present</div>
           </div>
 
-          <div className="grid-cell cell-r2" style={{ gridColumn: '4 / 5' }}>
+          <div className="grid-cell cell-r2 about-col-4-5">
             <div className="label" style={{ marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
             <div>
               <div className="label" style={{ marginBottom: '4px' }}>MERN Stack Intern</div>
@@ -197,17 +225,17 @@ export default function About() {
 
 
           {/* ROW 3: BOTTOM ALIGNED */}
-          <div className="grid-cell cell-r3" style={{ gridColumn: '1 / 2' }}>
+          <div className="grid-cell cell-r3 about-col-1-2">
             <div className="label" style={{ marginBottom: '0.8rem' }}>Contact</div>
             <div className="text-small" style={{ color: '#555' }}>Gmail: ashfakkp323@gmail.com</div>
           </div>
 
-          <div className="grid-cell cell-r3" style={{ gridColumn: '2 / 3' }}></div>
+          <div className="grid-cell cell-r3 about-col-2-3"></div>
 
-          <div className="grid-cell cell-r3" style={{ gridColumn: '3 / 5' }}>
-            <div className="heading-medium" style={{ marginLeft: '12%' }}>
-              I appreciate clean code<br/>
-              where intention, refinement,<br/>
+          <div className="grid-cell cell-r3 about-col-3-5">
+            <div className="heading-medium quote-heading">
+              I appreciate clean code<br />
+              where intention, refinement,<br />
               and functionality come together.
             </div>
           </div>

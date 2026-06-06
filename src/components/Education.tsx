@@ -12,7 +12,6 @@ export default function Education() {
             </h2>
             <div className="glass-card">
               <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem' }}>Bachelor of Arts in English</h3>
-              <p style={{ color: 'var(--accent-primary)', marginBottom: '1rem' }}>Indira Gandhi National Open University</p>
             </div>
           </div>
 
