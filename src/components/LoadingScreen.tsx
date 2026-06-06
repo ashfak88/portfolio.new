@@ -33,11 +33,11 @@ export default function LoadingScreen() {
       }, "-=0.5");
     }
 
-    // 3. Container fades out of view revealing the Hero
+    // 3. Container slides up and out of view revealing the Hero
     tl.to(containerRef.current, {
-      opacity: 0,
-      duration: 1,
-      ease: "power2.inOut",
+      yPercent: -100,
+      duration: 1.2,
+      ease: "power4.inOut",
       delay: 0.3
     });
 
