@@ -113,6 +113,10 @@ export default function Hero() {
             overflow: hidden;
             order: 2;
             clip-path: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            background-color: #000;
           }
           .hero-image {
             width: 100%;

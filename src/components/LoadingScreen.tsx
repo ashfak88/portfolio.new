@@ -33,7 +33,6 @@ export default function LoadingScreen() {
       }, "-=0.5");
     }
 
-    // 3. Container slides up and out of view revealing the Hero
     tl.to(containerRef.current, {
       yPercent: -100,
       duration: 1.2,
