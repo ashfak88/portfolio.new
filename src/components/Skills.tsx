@@ -1,6 +1,11 @@
 "use client";
-import React from 'react';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SiHtml5, SiCss, SiJavascript, SiReact, SiNodedotjs, SiMongodb, SiNextdotjs, SiTailwindcss, SiTypescript, SiGit, SiGithub, SiPostman } from 'react-icons/si';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const coreSkills = [
   {
@@ -66,12 +71,51 @@ const coreSkills = [
 ];
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // Header animate in
+    gsap.fromTo(headerRef.current,
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        }
+      }
+    );
+
+    // Staggered cards animate in
+    if (gridRef.current) {
+      gsap.fromTo(gridRef.current.children,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          }
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
-    <section id="skills" className="skills-section">
+    <section ref={sectionRef} id="skills" className="skills-section">
       <div className="skills-container">
         
         {/* Header aligned with About section aesthetic */}
-        <div className="skills-header">
+        <div ref={headerRef} className="skills-header">
           <h2 className="skills-title">
             Technical Arsenal
           </h2>
@@ -82,7 +126,7 @@ export default function Skills() {
         </div>
 
         {/* Architectural Hairline Grid */}
-        <div className="skills-grid">
+        <div ref={gridRef} className="skills-grid">
           {coreSkills.map((skill, idx) => (
             <div key={idx} className="skill-card">
               <div style={{ marginBottom: '2.5rem', display: 'flex', alignItems: 'center' }}>

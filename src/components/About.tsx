@@ -1,8 +1,38 @@
-import React from 'react';
+"use client";
+
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (gridRef.current) {
+      // Stagger animate cells
+      gsap.fromTo(gridRef.current.children,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          }
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
-    <section id="about" style={{
+    <section ref={sectionRef} id="about" style={{
       minHeight: '100vh',
       padding: '2.5rem',
       backgroundColor: '#e6e6e6',
@@ -159,7 +189,7 @@ export default function About() {
         <div className="crosshair" style={{ top: '100%', left: '75%' }}>+</div>
         <div className="crosshair" style={{ top: '100%', left: '100%' }}>+</div>
 
-        <div className="about-grid">
+        <div ref={gridRef} className="about-grid">
 
           {/* ROW 1: TOP ALIGNED */}
           <div className="grid-cell cell-r1 about-col-1-3">

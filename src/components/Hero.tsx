@@ -1,10 +1,33 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useGSAP(() => {
+    // Left text animations
+    if (leftContentRef.current) {
+      gsap.fromTo(leftContentRef.current.children,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: 1.2 }
+      );
+    }
+    // Image slide/fade entrance
+    if (imageRef.current) {
+      gsap.fromTo(imageRef.current,
+        { scale: 1.1, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1.6, ease: "power3.out", delay: 1 }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
-    <section className="hero-section" style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000', overflow: 'hidden' }}>
+    <section ref={sectionRef} className="hero-section" style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000', overflow: 'hidden' }}>
       <style>{`
         .hero-bg-shape {
           position: absolute;
@@ -104,6 +127,7 @@ export default function Hero() {
       {/* Right Content - Developer Image */}
       <div className="hero-right">
         <img 
+          ref={imageRef}
           src="/ashfak.jpg" 
           alt="Ashfak KP" 
           className="hero-image" 
@@ -112,7 +136,7 @@ export default function Hero() {
       {/* Content Container */}
       <div className="hero-container">
         {/* Left Content */}
-        <div className="hero-left">
+        <div ref={leftContentRef} className="hero-left">
           <h2 style={{ 
             fontSize: '1.8rem', 
             fontWeight: 700, 

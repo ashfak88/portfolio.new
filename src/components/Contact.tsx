@@ -1,14 +1,41 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (gridRef.current) {
+      gsap.fromTo(gridRef.current.children,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          }
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
-    <section id="contact" className="contact-section">
+    <section ref={sectionRef} id="contact" className="contact-section">
       <div className="contact-container">
         
         {/* Architectural Grid for Contact */}
-        <div className="contact-grid">
+        <div ref={gridRef} className="contact-grid">
           
           {/* Main Call to Action Cell */}
           <div className="contact-cta-cell">
