@@ -14,7 +14,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Contact />
-      <footer style={{ textAlign: 'center', padding: '2rem', borderTop: '1px solid #c0c0c0', color: '#555', backgroundColor: '#e6e6e6' }}>
+      <footer style={{ textAlign: 'center', padding: '2rem', borderTop: '1px solid #c0c0c0', color: '#555', backgroundColor: '#ffffff' }}>
         <p style={{ margin: 0, fontFamily: "'Inter', sans-serif" }}>© {new Date().getFullYear()} Ashfak KP. All rights reserved.</p>
       </footer>
     </main>
