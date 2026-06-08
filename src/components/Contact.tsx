@@ -50,8 +50,10 @@ export default function Contact() {
           
           <div className="contact-actions">
             <a 
-              href="mailto:ashfakkp323@gmail.com"
+              href="https://wa.me/918893390415?text=Hi%20Ashfak%2C%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20connect!"
               className="contact-btn"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Say hey!
             </a>
