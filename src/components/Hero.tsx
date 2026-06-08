@@ -174,7 +174,7 @@ export default function Hero() {
           </h3>
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <SocialIcon type="email" url="mailto:ashfakkp323@gmail.com" />
+            <SocialIcon type="instagram" url="https://www.instagram.com/as.hiiii/" />
             <SocialIcon type="github" url="https://github.com/ashfak88" />
             <SocialIcon type="linkedin" url="https://www.linkedin.com/in/ashfak-kp" />
           </div>
@@ -190,11 +190,12 @@ export default function Hero() {
 function SocialIcon({ type, url }: { type: string; url: string }) {
   const getIcon = () => {
     switch(type) {
-      case 'email':
+      case 'instagram':
         return (
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
         );
       case 'github':
@@ -217,8 +218,8 @@ function SocialIcon({ type, url }: { type: string; url: string }) {
   return (
     <a 
       href={url} 
-      target={type === 'email' ? undefined : "_blank"} 
-      rel={type === 'email' ? undefined : "noopener noreferrer"}
+      target="_blank" 
+      rel="noopener noreferrer"
       style={{
         display: 'flex',
         alignItems: 'center',
