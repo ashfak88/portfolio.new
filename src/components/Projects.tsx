@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,18 +13,6 @@ const projects = [
     subtitle: "SaaS Freelance Marketplace Platform",
     link: "https://freecone.vercel.app/",
     image: "/freecone.png",
-    gradient: "linear-gradient(135deg, #111 0%, #333 100%)",
-    accentColor: "#111",
-    accentGlow: "rgba(0, 0, 0, 0.05)",
-    tagline: "Escrow-based freelance connections",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-        <circle cx="9" cy="7" r="4"></circle>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-      </svg>
-    ),
     description: [
       "Role-based authentication (Freelancer, Client, Admin) using secure JWT tokens.",
       "Real-time chat messaging and system-wide instant notifications via Socket.IO.",
@@ -38,17 +26,6 @@ const projects = [
     subtitle: "MERN Stack E-commerce Platform",
     link: "https://hotwheeels.vercel.app/",
     image: "/hotwheels.png",
-    gradient: "linear-gradient(135deg, #111 0%, #333 100%)",
-    accentColor: "#111",
-    accentGlow: "rgba(0, 0, 0, 0.05)",
-    tagline: "High-performance automotive marketplace",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </svg>
-    ),
     description: [
       "Modular e-commerce RESTful API catalog and checkout architecture.",
       "Complete JWT credential management systems with encrypted route protection.",
@@ -62,16 +39,6 @@ const projects = [
     subtitle: "Domain-Driven Modular Architecture",
     link: "https://lms.bridgeon.in/login",
     image: "/lms.png",
-    gradient: "linear-gradient(135deg, #111 0%, #333 100%)",
-    accentColor: "#111",
-    accentGlow: "rgba(0, 0, 0, 0.05)",
-    tagline: "Kodlarr Innovations live system",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-        <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
-      </svg>
-    ),
     description: [
       "Rigid features-based system utilizing modular Domain-Driven Design (DDD).",
       "Internal training and progress tracking software used for corporate learning management.",
@@ -86,6 +53,7 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const [expandedProjectIndex, setExpandedProjectIndex] = useState<number | null>(null);
 
   useGSAP(() => {
     // Header animate in
@@ -124,313 +92,360 @@ export default function Projects() {
 
   return (
     <section ref={sectionRef} id="portfolio" className="projects-section">
-      
-      {/* Futuristic Projects Header */}
       <div ref={headerRef} className="projects-header">
-        <h2 className="projects-title">Selected Exhibitions</h2>
-        <p className="projects-subtitle">MERN Stack, SaaS Platforms & Enterprise Solutions</p>
+        <h2 className="projects-title">My Brightest Creations</h2>
+        <p className="projects-subtitle">
+          A showcase of my latest projects, highlighting thoughtful design, clear strategy, and impactful results.
+        </p>
       </div>
 
-      {/* Breathtaking Grid Showcase */}
       <div ref={gridRef} className="projects-grid">
-        {projects.map((p, i) => (
-          <div 
-            key={i} 
-            className="project-card"
-            style={{
-              '--accent-color': p.accentColor,
-              '--accent-gradient': p.gradient,
-              '--accent-glow': p.accentGlow
-            } as React.CSSProperties}
-          >
-            {/* Project Image Header */}
-            <div className="project-card-header">
-              <img 
-                src={p.image} 
-                alt={p.title} 
-                className="project-card-image"
-              />
-            </div>
-
-            {/* Premium Card Content */}
-            <div className="project-card-content">
-              {/* Pulsing Icon */}
-              <div className="project-card-icon">
-                {p.icon}
+        {projects.map((p, i) => {
+          const isExpanded = expandedProjectIndex === i;
+          return (
+            <div key={i} className="project-item">
+              <div 
+                className="project-card-visual" 
+                onClick={() => setExpandedProjectIndex(isExpanded ? null : i)}
+                style={{ position: 'relative' }}
+              >
+                <img src={p.image} alt={p.title} className="project-image" />
+                
+                {isExpanded && (
+                  <div className="project-card-details-overlay" onClick={(e) => e.stopPropagation()}>
+                    <button 
+                      className="card-details-close" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedProjectIndex(null);
+                      }}
+                    >
+                      ×
+                    </button>
+                    <h4 className="card-details-title">Key Features</h4>
+                    <ul className="card-details-list">
+                      {p.description.map((desc, idx) => (
+                        <li key={idx} className="card-details-item">
+                          <span className="bullet">•</span>
+                          <span className="desc-text">{desc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-
-              {/* Title & Tagline */}
-              <h3 className="project-card-title">{p.title}</h3>
-              <p className="project-card-subtitle">{p.subtitle}</p>
-
-              {/* Custom-bulleted Description List */}
-              <ul className="project-card-desc-list">
-                {p.description.map((desc, idx) => (
-                  <li key={idx} className="project-card-desc-item">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span>{desc}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Custom Tech Stack Tags */}
-              <div className="project-card-tech-list">
-                {p.tech.map((tech, idx) => (
-                  <span key={idx} className="project-card-tech-tag">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Glassmorphic Glowing Button */}
-              <div className="project-card-footer">
-                <a 
-                  href={p.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="project-launch-btn"
+              <div className="project-info">
+                <h3 
+                  className="project-item-title" 
+                  onClick={() => setExpandedProjectIndex(isExpanded ? null : i)} 
+                  style={{ cursor: 'pointer' }}
                 >
-                  Initialize Application ↗
-                </a>
+                  {p.title}
+                </h3>
+                <p className="project-item-subtitle">{p.subtitle}</p>
+                <div className="project-tech-list">
+                  {p.tech.slice(0, 4).map((t, idx) => (
+                    <span key={idx} className="project-tech-pill">{t}</span>
+                  ))}
+                </div>
+                <div className="project-actions">
+                  <button 
+                    onClick={() => setExpandedProjectIndex(isExpanded ? null : i)}
+                    className="action-btn btn-details"
+                  >
+                    {isExpanded ? "Hide Details" : "Details"}
+                  </button>
+                  <a 
+                    href={p.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="action-btn btn-launch"
+                  >
+                    Live Demo ↗
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <style>{`
         .projects-section {
-          position: relative;
-          width: 100%;
+          background-color: #e6e6e6;
+          padding: 8rem 4rem;
+          color: #111;
+          font-family: 'Inter', sans-serif;
+          min-height: 100vh;
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          padding: 8rem 2.5rem 4rem 2.5rem;
-          box-sizing: border-box;
-          overflow: hidden;
-          background-color: #e6e6e6;
         }
+
         .projects-header {
           width: 100%;
-          max-width: 1600px;
-          margin-bottom: 4rem; 
-          display: flex; 
-          justify-content: space-between; 
-          align-items: flex-end; 
-          border-bottom: 1px solid #c0c0c0; 
-          padding-bottom: 1.5rem;
-          flex-wrap: wrap;
-          gap: 2rem;
-          box-sizing: border-box;
+          max-width: 1400px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 5rem;
         }
+
         .projects-title {
           font-family: 'Times New Roman', Times, serif;
-          font-size: clamp(2rem, 3.2vw, 3.6rem);
+          font-size: clamp(3rem, 5.5vw, 5.5rem);
+          font-weight: 400;
+          margin: 0 0 1.5rem 0;
+          letter-spacing: -2px;
           color: #111;
-          margin: 0;
-          letter-spacing: -1px;
-          line-height: 1;
-        }
-        .projects-subtitle {
-          color: #555;
-          font-size: 0.85rem;
-          text-align: right;
-          line-height: 1.6;
-          font-family: system-ui, -apple-system, sans-serif;
-          letter-spacing: 0.5px;
-          text-transform: none;
-          font-weight: normal;
-        }
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          width: 100%;
-          max-width: 1600px;
-          position: relative;
-          z-index: 10;
-          border-top: 1px solid #c0c0c0;
-          border-left: 1px solid #c0c0c0;
-        }
-        .project-card {
-          background: #e6e6e6;
-          border-right: 1px solid #c0c0c0;
-          border-bottom: 1px solid #c0c0c0;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          transition: background-color 0.3s ease;
-          position: relative;
-        }
-        .project-card:hover {
-          background-color: #dfdfdf;
-        }
-        
-        .project-card-header {
-          height: 170px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background: #dfdfdf;
-          border-bottom: 1px solid #c0c0c0;
-          transition: background-color 0.3s ease;
-        }
-        .project-card:hover .project-card-header {
-          background: #d5d5d5;
-        }
-        
-        .project-card-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .project-card:hover .project-card-image {
-          transform: scale(1.05);
+          line-height: 1.05;
         }
 
-        .project-card-content {
-          padding: 2.5rem;
+        .projects-subtitle {
+          font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+          color: #444;
+          line-height: 1.5;
+          margin: 0;
+          max-width: 700px;
+        }
+
+        .projects-grid {
+          width: 100%;
+          max-width: 1400px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 4rem 3.5rem;
+        }
+
+        .project-item {
+          color: inherit;
           display: flex;
           flex-direction: column;
-          flex: 1;
         }
-        .project-card-icon {
-          display: inline-flex;
+
+        .project-card-visual {
+          width: 100%;
+          aspect-ratio: 1.6;
+          border-radius: 32px;
+          overflow: hidden;
+          background: radial-gradient(circle at 10% 20%, #ff5a36 0%, transparent 55%),
+                      radial-gradient(circle at 90% 80%, #3fa9f5 0%, transparent 55%),
+                      radial-gradient(circle at 80% 20%, #ab64f5 0%, transparent 45%),
+                      linear-gradient(135deg, #ffc3a0 0%, #ade8f4 100%);
+          padding: 1.8rem;
+          box-sizing: border-box;
+          display: flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
-          height: 44px;
-          border-radius: 10px;
-          background: rgba(0, 0, 0, 0.02);
-          border: 1px solid #c0c0c0;
-          color: #111;
-          margin-bottom: 1.5rem;
-          transition: all 0.3s ease;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          cursor: pointer;
         }
-        .project-card:hover .project-card-icon {
-          background: #111;
-          border-color: transparent;
-          color: #fff;
+
+        .project-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          border-radius: 12px;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .project-card-title {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #111;
-          margin: 0 0 0.3rem 0;
-          letter-spacing: -0.5px;
+
+        .project-item:hover .project-card-visual {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-item:hover .project-image {
+          transform: scale(1.03);
+        }
+
+        .project-info {
+          padding-top: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .project-item-title {
           font-family: 'Times New Roman', Times, serif;
+          font-size: 2.2rem;
+          font-weight: 400;
+          margin: 0;
+          color: #111;
+          letter-spacing: -0.5px;
         }
-        .project-card-subtitle {
-          font-size: 0.82rem;
+
+        .project-item-subtitle {
+          font-size: 0.95rem;
           color: #555;
-          margin: 0 0 1.5rem 0;
-          letter-spacing: 0.5px;
+          margin: 0;
           font-weight: 500;
         }
-        
-        .project-card-desc-list {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 2rem 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.8rem;
-          flex: 1;
-        }
-        .project-card-desc-item {
-          font-size: 0.85rem;
-          line-height: 1.6;
-          color: #444;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.75rem;
-        }
-        .project-card-desc-item svg {
-          flex-shrink: 0;
-          margin-top: 5px;
-        }
 
-        .project-card-tech-list {
+        .project-tech-list {
           display: flex;
           flex-wrap: wrap;
           gap: 0.4rem;
-          margin-bottom: 2rem;
-          border-top: 1px solid #c0c0c0;
-          padding-top: 1.5rem;
-        }
-        .project-card-tech-tag {
-          font-size: 0.7rem;
-          color: #444;
-          font-weight: 600;
-          letter-spacing: 0.5px;
-          background: rgba(0, 0, 0, 0.02);
-          border: 1px solid #c0c0c0;
-          padding: 4px 9px;
-          border-radius: 4px;
-          text-transform: uppercase;
+          margin-top: 0.2rem;
         }
 
-        .project-launch-btn {
-          width: 100%;
+        .project-tech-pill {
+          font-size: 0.75rem;
+          color: #666;
+          border: 1px solid #c0c0c0;
+          padding: 3px 8px;
+          border-radius: 6px;
+          font-weight: 600;
+        }
+
+        /* Action Buttons Row */
+        .project-actions {
           display: flex;
+          gap: 0.8rem;
+          margin-top: 1rem;
+        }
+
+        .action-btn {
+          padding: 8px 18px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
-          padding: 0.85rem;
-          border-radius: 8px;
-          border: 1px solid #111;
-          background: rgba(0, 0, 0, 0.02);
-          color: #111;
-          font-size: 0.8rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
+          cursor: pointer;
         }
-        .project-card:hover .project-launch-btn {
+
+        .btn-details {
+          background: transparent;
+          border: 1px solid #c0c0c0;
+          color: #444;
+        }
+
+        .btn-details:hover {
+          border-color: #111;
+          color: #111;
+          background: rgba(0, 0, 0, 0.02);
+        }
+
+        .btn-launch {
           background: #111;
+          border: 1px solid #111;
           color: #fff !important;
         }
 
-        @media (max-width: 1100px) {
-          .projects-grid {
-            grid-template-columns: repeat(2, 1fr);
+        .btn-launch:hover {
+          background: #333;
+          border-color: #333;
+          transform: translateY(-1px);
+        }
+
+        /* Card Details Overlay Styles */
+        .project-card-details-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 1.5rem;
+          box-sizing: border-box;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          overflow-y: auto;
+          color: #111;
+          animation: cardOverlayFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardOverlayFadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
           }
         }
-        @media (max-width: 750px) {
-          .projects-section {
-            padding: 5rem 1.5rem;
-          }
-          .projects-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-          }
-          .projects-subtitle {
-            text-align: left;
-          }
+
+        .card-details-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: #f0f0f0;
+          border: none;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #555;
+          transition: all 0.2s ease;
+          z-index: 20;
+        }
+
+        .card-details-close:hover {
+          background: #e0e0e0;
+          color: #111;
+        }
+
+        .card-details-title {
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: var(--accent-primary, #556b2f);
+          margin-bottom: 0.8rem;
+          margin-top: 0.5rem;
+        }
+
+        .card-details-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .card-details-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+          font-size: 0.82rem;
+          line-height: 1.5;
+          color: #333;
+        }
+
+        .card-details-item .bullet {
+          color: var(--accent-primary, #556b2f);
+          font-weight: bold;
+        }
+
+        @media (max-width: 900px) {
           .projects-grid {
             grid-template-columns: 1fr;
+            gap: 3rem;
           }
-          .project-card-content {
-            padding: 1.5rem;
+          .projects-section {
+            padding: 6rem 2rem;
           }
-          .project-card-header {
-            height: 140px;
+          .project-card-visual {
+            border-radius: 24px;
           }
-          .project-card-tech-list {
-            margin-bottom: 1.5rem;
-            padding-top: 1.2rem;
+          .project-item-title {
+            font-size: 1.8rem;
           }
         }
       `}</style>

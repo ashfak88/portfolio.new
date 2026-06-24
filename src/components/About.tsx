@@ -202,12 +202,12 @@ export default function About() {
           </div>
 
           <div className="grid-cell cell-r1 about-col-3-4">
-            <div className="label" style={{ marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Education</div>
+            <div className="label" style={{ height: '24px', lineHeight: '24px', marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Education</div>
             <div className="date">2024</div>
           </div>
 
           <div className="grid-cell cell-r1 about-col-4-5">
-            <div className="label" style={{ marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
+            <div className="label" style={{ height: '24px', lineHeight: '24px', marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
             <div>
               <div className="label" style={{ marginBottom: '4px' }}>Bachelor of Arts in English</div>
               <div className="text-small" style={{ color: '#555' }}>Indira Gandhi National Open University</div>
@@ -241,15 +241,24 @@ export default function About() {
             </p>
           </div>
           <div className="grid-cell cell-r2 about-col-3-4">
-            <div className="label" style={{ marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Experience</div>
-            <div className="date">08/25 - Present</div>
+            <div className="label" style={{ height: '24px', lineHeight: '24px', marginBottom: '1.5rem', textDecoration: 'underline', textUnderlineOffset: '4px' }}>Experience</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <div className="date">05/26 - Present</div>
+              <div className="date">08/25 - Present</div>
+            </div>
           </div>
 
           <div className="grid-cell cell-r2 about-col-4-5">
-            <div className="label" style={{ marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
-            <div>
-              <div className="label" style={{ marginBottom: '4px' }}>MERN Stack Intern</div>
-              <div className="text-small" style={{ color: '#555' }}>Bridgeon</div>
+            <div className="label" style={{ height: '24px', lineHeight: '24px', marginBottom: '1.5rem', visibility: 'hidden' }}>Placeholder</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              <div>
+                <div className="label" style={{ marginBottom: '4px' }}>Full Stack Developer</div>
+                <div className="text-small" style={{ color: '#555' }}>Kodlar Innovations</div>
+              </div>
+              <div>
+                <div className="label" style={{ marginBottom: '4px' }}>MERN Stack Intern</div>
+                <div className="text-small" style={{ color: '#555' }}>Bridgeon</div>
+              </div>
             </div>
           </div>
 
