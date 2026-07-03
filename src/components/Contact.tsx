@@ -57,6 +57,18 @@ export default function Contact() {
             >
               Say hey!
             </a>
+            <a 
+              href="/ASHFAK_KP.pdf" 
+              download="ASHFAK_KP.pdf"
+              className="contact-btn-resume"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '10px' }}>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Resume
+            </a>
           </div>
 
           <div className="contact-details-grid">
@@ -145,11 +157,36 @@ export default function Contact() {
           font-weight: 400;
         }
         .contact-actions {
+          display: flex;
+          gap: 1.5rem;
           margin-bottom: 3rem;
+          flex-wrap: wrap;
         }
         .contact-btn {
-          display: inline-block;
-          padding: 0.9rem 4rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.9rem 3.5rem;
+          background-color: #111111;
+          color: #ffffff !important;
+          text-decoration: none;
+          font-family: 'Inter', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 500;
+          border-radius: 50px;
+          border: 1px solid #111111;
+          transition: all 0.3s ease;
+        }
+        .contact-btn:hover {
+          background-color: transparent;
+          color: #111111 !important;
+          transform: translateY(-2px);
+        }
+        .contact-btn-resume {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.9rem 3.5rem;
           background-color: transparent;
           color: #111111;
           text-decoration: none;
@@ -160,7 +197,7 @@ export default function Contact() {
           border: 1px solid #111111;
           transition: all 0.3s ease;
         }
-        .contact-btn:hover {
+        .contact-btn-resume:hover {
           background-color: #111111;
           color: #ffffff !important;
           transform: translateY(-2px);
