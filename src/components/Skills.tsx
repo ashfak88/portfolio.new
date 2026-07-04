@@ -13,60 +13,60 @@ const coreSkills = [
     desc: 'Markup and styling architectures for precise, responsive layouts.',
     icons: (
       <div style={{ display: 'flex', gap: '1rem' }}>
-        <SiHtml5 size={32} color="#111" />
-        <SiCss size={32} color="#111" />
+        <SiHtml5 size={32} color="#111" title="HTML5" aria-label="HTML5" />
+        <SiCss size={32} color="#111" title="CSS3" aria-label="CSS3" />
       </div>
     )
   },
   {
     title: 'JavaScript',
     desc: 'Core logic and dynamic interactivity for modern web functionality.',
-    icons: <SiJavascript size={32} color="#111" />
+    icons: <SiJavascript size={32} color="#111" title="JavaScript" aria-label="JavaScript" />
   },
   {
     title: 'React.js',
     desc: 'Component-driven UI architecture for dynamic user experiences.',
-    icons: <SiReact size={32} color="#111" />
+    icons: <SiReact size={32} color="#111" title="React.js" aria-label="React.js" />
   },
   {
     title: 'Node.js & Express',
     desc: 'Scalable backend services and robust RESTful API development.',
-    icons: <SiNodedotjs size={32} color="#111" />
+    icons: <SiNodedotjs size={32} color="#111" title="Node.js" aria-label="Node.js" />
   },
   {
     title: 'MongoDB',
     desc: 'NoSQL document storage for flexible, high-performance data modeling.',
-    icons: <SiMongodb size={32} color="#111" />
+    icons: <SiMongodb size={32} color="#111" title="MongoDB" aria-label="MongoDB" />
   },
   {
     title: 'Next.js',
     desc: 'Server-rendered React frameworks for production-grade applications.',
-    icons: <SiNextdotjs size={32} color="#111" />
+    icons: <SiNextdotjs size={32} color="#111" title="Next.js" aria-label="Next.js" />
   },
   {
     title: 'Tailwind CSS',
     desc: 'Utility-first styling systems for rapid, constraint-based design.',
-    icons: <SiTailwindcss size={32} color="#111" />
+    icons: <SiTailwindcss size={32} color="#111" title="Tailwind CSS" aria-label="Tailwind CSS" />
   },
   {
     title: 'TypeScript',
     desc: 'Static typing architectures for robust, error-free JavaScript applications.',
-    icons: <SiTypescript size={32} color="#111" />
+    icons: <SiTypescript size={32} color="#111" title="TypeScript" aria-label="TypeScript" />
   },
   {
     title: 'Version Control',
     desc: 'Collaborative repository management and source code tracking.',
     icons: (
       <div style={{ display: 'flex', gap: '1rem' }}>
-        <SiGit size={32} color="#111" />
-        <SiGithub size={32} color="#111" />
+        <SiGit size={32} color="#111" title="Git" aria-label="Git" />
+        <SiGithub size={32} color="#111" title="GitHub" aria-label="GitHub" />
       </div>
     )
   },
   {
     title: 'API Testing',
     desc: 'Endpoint testing and comprehensive documentation environments.',
-    icons: <SiPostman size={32} color="#111" />
+    icons: <SiPostman size={32} color="#111" title="Postman" aria-label="Postman" />
   }
 ];
 
