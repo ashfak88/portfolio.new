@@ -4,6 +4,10 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
+import freeconeImg from '../../public/freecone.png';
+import hotwheelsImg from '../../public/hotwheels.png';
+import lmsImg from '../../public/lms.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +16,7 @@ const projects = [
     title: "FreeCone Platform",
     subtitle: "SaaS Freelance Marketplace Platform",
     link: "https://freecone.vercel.app/",
-    image: "/freecone.png",
+    image: freeconeImg,
     description: [
       "Role-based authentication (Freelancer, Client, Admin) using secure JWT tokens.",
       "Real-time chat messaging and system-wide instant notifications via Socket.IO.",
@@ -25,7 +29,7 @@ const projects = [
     title: "Hotwheels Store",
     subtitle: "MERN Stack E-commerce Platform",
     link: "https://hotwheeels.vercel.app/",
-    image: "/hotwheels.png",
+    image: hotwheelsImg,
     description: [
       "Modular e-commerce RESTful API catalog and checkout architecture.",
       "Complete JWT credential management systems with encrypted route protection.",
@@ -38,7 +42,7 @@ const projects = [
     title: "LMS Enterprise",
     subtitle: "Domain-Driven Modular Architecture",
     link: "https://lms.bridgeon.in/login",
-    image: "/lms.png",
+    image: lmsImg,
     description: [
       "Rigid features-based system utilizing modular Domain-Driven Design (DDD).",
       "Internal training and progress tracking software used for corporate learning management.",
@@ -109,7 +113,7 @@ export default function Projects() {
                 onClick={() => setExpandedProjectIndex(isExpanded ? null : i)}
                 style={{ position: 'relative' }}
               >
-                <img src={p.image} alt={p.title} className="project-image" />
+                <Image src={p.image} alt={p.title} className="project-image" />
                 
                 {isExpanded && (
                   <div className="project-card-details-overlay" onClick={(e) => e.stopPropagation()}>
@@ -122,7 +126,7 @@ export default function Projects() {
                     >
                       ×
                     </button>
-                    <h4 className="card-details-title">Key Features</h4>
+                    <div className="card-details-title">Key Features</div>
                     <ul className="card-details-list">
                       {p.description.map((desc, idx) => (
                         <li key={idx} className="card-details-item">
@@ -279,7 +283,7 @@ export default function Projects() {
 
         .project-item-subtitle {
           font-size: 0.95rem;
-          color: #555;
+          color: #333;
           margin: 0;
           font-weight: 500;
         }
@@ -293,8 +297,8 @@ export default function Projects() {
 
         .project-tech-pill {
           font-size: 0.75rem;
-          color: #666;
-          border: 1px solid #c0c0c0;
+          color: #333;
+          border: 1px solid #a0a0a0;
           padding: 3px 8px;
           border-radius: 6px;
           font-weight: 600;

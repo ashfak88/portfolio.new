@@ -4,6 +4,8 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
+import photo2 from '../../public/photo 2.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,7 +107,7 @@ export default function About() {
           line-height: 1.05;
           letter-spacing: -1px;
           font-weight: 400;
-          color: '#111';
+          color: #111;
           margin-bottom: 1rem;
         }
 
@@ -115,24 +117,24 @@ export default function About() {
           line-height: 1.05;
           letter-spacing: -0.5px;
           font-weight: 400;
-          color: '#111';
+          color: #111;
           margin-top: 3rem;
         }
 
         .text-small {
           font-size: 0.85rem;
           line-height: 1.6;
-          color: '#333';
+          color: #333;
         }
 
         .label {
           font-weight: 700;
           font-size: 0.85rem;
-          color: '#111';
+          color: #111;
         }
 
         .date {
-          color: '#666';
+          color: #333;
           font-size: 0.85rem;
         }
 
@@ -218,8 +220,8 @@ export default function About() {
           {/* ROW 2: MIDDLE ROW */}
           <div className="grid-cell cell-r2 about-col-1-2">
             <div style={{ width: '100%', aspectRatio: '3/4', backgroundColor: '#d0d0d0', borderRadius: '4px', position: 'relative', overflow: 'hidden' }}>
-              <img
-                src="/photo 2.jpeg"
+              <Image
+                src={photo2}
                 alt="Ashfak KP"
                 style={{
                   width: '100%',
